@@ -20,3 +20,4 @@ python plot.py -model m -target p -d dim
 ```
 with corresponding parameters to output the loss and gradient curves.
 
+<img src="gradients.png" />
