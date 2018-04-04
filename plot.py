@@ -52,13 +52,10 @@ if __name__ == '__main__':
 		if os.path.exists(save_dir + m):
 			models.append(m)
 
-	# fig = plt.figure(figsize=(100,100))
-	# fig = plt.figure(1)
-
-	for i in range(100):
-		losses_dir =  save_dir + 'loss{}.txt'.format(i)
-		if not os.path.exists(losses_dir):
-			break
+	# for i in range(100):
+	# 	losses_dir =  save_dir + 'loss{}.txt'.format(i)
+	# 	if not os.path.exists(losses_dir):
+	# 		break
 
 	for i, m in enumerate(models):
 		with open(save_dir + m + '/loss.pkl', 'rb' ) as f:
@@ -70,6 +67,8 @@ if __name__ == '__main__':
 		ax = f.add_subplot(len(models),3,3*i+1)
 		ax.set_title(m, rotation='vertical',x=-0.2,y=0.5)
 		plot_loss(curves[0])
+		# ax.annotate(str(curves[0][-1]), xy=(len(curves[0]), curves[0][-1]), xytext=(-1,0))
+		ax.text((4./5)*len(curves[0]), max(curves[0]), '{:.5f}'.format(curves[0][-1]), fontsize=6)
 
 		f.add_subplot(len(models),3,3*i+2)
 		plot_grads(curves[1])
@@ -83,10 +82,6 @@ if __name__ == '__main__':
 		sns.set_context(rc={"lines.linewidth": 0.8})
 		plt.plot(curves[0], label=m)
 		print(curves[0][-1])
-		with open(losses_dir, 'a') as f:
-			f.write(m + '\n')
-			f.write(str(curves[0][-1]) + '\n')
-
 
 	matplotlib.rcParams.update({'font.size': 4})
 

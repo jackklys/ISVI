@@ -99,22 +99,22 @@ def train(model):
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-model', type=str, default='IWAE')
-parser.add_argument('-k', type=int, default=2)
+parser.add_argument('-target', type=str, default='HalfGaussian')
+parser.add_argument('-k', type=int, default=12)
 parser.add_argument('-e', type=int, default=120000)
 args = parser.parse_args()
 model_name = args.model
 num_samples = args.k
+target = args.target
 epochs = args.e 
 
 # num_samples = 10
 num_mixes = 2
 z_dim = 2
 
-# train_gaussianmixture()
-# train_standardgaussian()
-train_halfgaussian()
-# train_slicegaussian()
-# make_figure(12)
+if target=='HalfGaussian': train_halfgaussian()
+if target=='SliceGaussian': train_slicegaussian()
+if target=='GaussianMixture': train_gaussianmixture()
 
 
 

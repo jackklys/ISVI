@@ -15,7 +15,7 @@ import lowd
 from lowd import make_rotation_matrix
 from experiments_1d import plot_loss, plot_grads, plot_gradvars
 from experiments_2d import visualize_posterior, visualize_samples
-from experiments_10d import make_figure
+from experiments_nd import make_figure
 import cPickle as pkl
 
 
@@ -105,19 +105,25 @@ def train(model):
 
 parser = argparse.ArgumentParser()
 parser.add_argument('-model', type=str, default='IWAE')
+parser.add_argument('-target', type=str, default='HalfGaussian')
 parser.add_argument('-k', type=int, default=12)
 parser.add_argument('-e', type=int, default=120000)
 parser.add_argument('-d', type=int, default=10)
 args = parser.parse_args()
 model_name = args.model
 num_samples = args.k
+target = args.target
 z_dim = args.d
 epochs = args.e 
 
 num_mixes = 2
 
+if target=='HalfGaussian': train_halfgaussian()
+if target=='SliceGaussian': train_slicegaussian()
+if target=='GaussianMixture': train_gaussianmixture()
+
+
 # train_gaussianmixture()
-train_halfgaussian()
 # train_slicegaussian()
 # make_figure(12)
 
