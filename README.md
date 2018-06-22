@@ -1,6 +1,6 @@
 # Joint importance sampling for variational inference
 
-Code for the paper at https://openreview.net/forum?id=BJwOaFJvM
+Code for the paper at https://openreview.net/pdf?id=BJwOaFJvM
 
 # Example
 
